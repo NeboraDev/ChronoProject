@@ -25,6 +25,7 @@ public class GUI extends JFrame {
     {
 
         String[] fileText = {"Save", "Save As", "Export", "Import", "Settings", "Quit"};
+        String[] editText = {};
 
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("File");
@@ -33,6 +34,8 @@ public class GUI extends JFrame {
             JMenuItem size = new JMenuItem(s);
             menu.add(size);
         }
+        
+        for (String s :
 
         menuBar.add(menu);
         setJMenuBar(menuBar);
