@@ -8,10 +8,14 @@ public class PlaySound {
 
     private final byte[] generatedSnd = new byte[2 * numSamples];
 
-
-
     public PlaySound()
     {
 
     }
+
+    void playSound()
+    {
+        final AudioTrack
+    }
+
 }
