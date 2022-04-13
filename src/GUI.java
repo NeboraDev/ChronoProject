@@ -3,14 +3,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUI extends JFrame implements ActionListener {
+public class GUI extends JFrame implements ActionListener{
 
     private int resX;
     private int resY;
 
     public GUI(int resX, int resY)
     {
-
         this.resX = resX;
         this.resY = resY;
 
@@ -23,7 +22,7 @@ public class GUI extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
     }
 
-    public void MenuWidgets()
+    public void menuWidgets()
     {
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
@@ -49,13 +48,14 @@ public class GUI extends JFrame implements ActionListener {
         setJMenuBar(menuBar);
     }
 
+    public int getResX() {return resX;}
+    public void setResX(int resX) {this.resX = resX;}
+
+    public int getResY() {return resY;}
+    public void setResY(int resY) {this.resY = resY;}
+
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        /*if (e.getSource() == quitItem)
-        {
-
-        }*/
 
     }
 }
