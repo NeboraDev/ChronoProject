@@ -13,13 +13,17 @@ public class GUI extends JFrame implements ActionListener{
         this.resX = resX;
         this.resY = resY;
 
-        Image icon = Toolkit.getDefaultToolkit().getImage("img/logo.ico");
-        setIconImage(icon);
+        String bg = "#ead4aa"; //Background Color for Application
+
+        ImageIcon icon = new ImageIcon("img/logo.ico"); //Icon
+        setIconImage(icon.getImage()); //Setting the Icon --!!Note: Does not work at the moment!!--
         setTitle("Chrono"); //Sets the title of the Application.
         setSize(resX, resY); //Sets the size of the window application.
         setVisible(true); //Sets the window as visible.
+        setResizable(false); //Disables usage to resize the program to prevent errors.
         setDefaultCloseOperation(EXIT_ON_CLOSE); //Allows the X button to close.
-        setLocationRelativeTo(null);
+        getContentPane().setBackground(Color.decode(bg));
+        setLocationRelativeTo(null); //Centers the program.
     }
 
     public void menuWidgets()
@@ -43,16 +47,29 @@ public class GUI extends JFrame implements ActionListener{
         JMenuItem copyItem = new JMenuItem("Copy"); editMenu.add(copyItem); copyItem.addActionListener(this);
         JMenuItem pasteItem = new JMenuItem("Paste"); editMenu.add(pasteItem); pasteItem.addActionListener(this);
 
+        //Adds the Menu
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
         setJMenuBar(menuBar);
     }
 
-    public int getResX() {return resX;}
-    public void setResX(int resX) {this.resX = resX;}
+    public void buttonWidgets()
+    {
+        //Icon Images + Button
+        Icon playIcon = new ImageIcon("img/playButton.png"); JButton play = new JButton(playIcon);
+        Icon stopIcon = new ImageIcon("img/stopButton.png"); JButton stop = new JButton(stopIcon);
+        Icon pauseIcon = new ImageIcon("img/pauseButton.png"); JButton pause = new JButton(pauseIcon);
 
-    public int getResY() {return resY;}
-    public void setResY(int resY) {this.resY = resY;}
+        //Removing Java Applied Designs
+        play.setBorderPainted(false); play.setContentAreaFilled(false);
+        stop.setBorderPainted(false); stop.setContentAreaFilled(false);
+        pause.setBorderPainted(false); pause.setContentAreaFilled(false);
+
+        //Organized Box for Buttons
+        Box mediaControl = Box.createHorizontalBox();
+        mediaControl.add(play); mediaControl.add(stop); mediaControl.add(pause);
+        add(mediaControl);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

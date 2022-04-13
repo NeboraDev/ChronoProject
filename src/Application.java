@@ -1,10 +1,14 @@
 import javax.sound.sampled.LineUnavailableException;
+import java.awt.*;
+
+import static java.awt.Toolkit.*;
 
 public class Application {
 
     public static void main(String[] args) throws LineUnavailableException {
-        GUI gui = new GUI(400, 400);
+        GUI gui = new GUI(800, 800);
         gui.menuWidgets();
-        Synthesizer synth = new Synthesizer();
+        gui.buttonWidgets();
+        //Synthesizer synth = new Synthesizer();
     }
 }
