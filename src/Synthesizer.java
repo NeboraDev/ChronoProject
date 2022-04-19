@@ -12,13 +12,12 @@ public class Synthesizer {
 
         boolean forwardNotBack = true;
 
-        for(double freq = 400; freq <= 800;)
+        for(double freq = 400; freq <= 800; freq++)
         {
             byte[] toneBuffer = createSinWaveBuffer(freq, 50);
             int count = line.write(toneBuffer, 0, toneBuffer.length);
 
-            if(forwardNotBack)
-            {
+            if(forwardNotBack){
                 freq += 20;
                 forwardNotBack = false;
             }else{
@@ -26,7 +25,6 @@ public class Synthesizer {
                 forwardNotBack = true;
             }
         }
-
         line.drain();
         line.close();
     }

@@ -8,22 +8,26 @@ public class GUI extends JFrame implements ActionListener{
     private int resX;
     private int resY;
 
+    JButton play, stop, pause;
+    JMenuItem quitItem;
+
     public GUI(int resX, int resY)
     {
         this.resX = resX;
         this.resY = resY;
-
-        String bg = "#ead4aa"; //Background Color for Application
 
         ImageIcon icon = new ImageIcon("img/logo.ico"); //Icon
         setIconImage(icon.getImage()); //Setting the Icon --!!Note: Does not work at the moment!!--
         setTitle("Chrono"); //Sets the title of the Application.
         setSize(resX, resY); //Sets the size of the window application.
         setVisible(true); //Sets the window as visible.
-        setResizable(false); //Disables usage to resize the program to prevent errors.
+        //setResizable(false); //Disables usage to resize the program to prevent errors.
         setDefaultCloseOperation(EXIT_ON_CLOSE); //Allows the X button to close.
-        getContentPane().setBackground(Color.decode(bg));
+        //getContentPane().setBackground(Color.decode(bg)); //Background Color. *Not using, using panel background.*
         setLocationRelativeTo(null); //Centers the program.
+
+        menuWidgets();
+        buttonWidgets();
     }
 
     public void menuWidgets()
@@ -51,28 +55,50 @@ public class GUI extends JFrame implements ActionListener{
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
         setJMenuBar(menuBar);
+
+        Icon menuTaskBarImage = new ImageIcon("img/topBar.png");
+        JLabel menuTaskBarLabel = new JLabel(menuTaskBarImage);
+        add(menuTaskBarLabel);
     }
 
     public void buttonWidgets()
     {
+
+        String bg = "#ead4aa"; //Background Color for Application
+
         //Icon Images + Button
-        Icon playIcon = new ImageIcon("img/playButton.png"); JButton play = new JButton(playIcon);
-        Icon stopIcon = new ImageIcon("img/stopButton.png"); JButton stop = new JButton(stopIcon);
-        Icon pauseIcon = new ImageIcon("img/pauseButton.png"); JButton pause = new JButton(pauseIcon);
+        Icon playIcon = new ImageIcon("img/playButton.png");
+        Icon stopIcon = new ImageIcon("img/stopButton.png");
+        Icon pauseIcon = new ImageIcon("img/pauseButton.png");
+
+        JButton play = new JButton(playIcon); play.addActionListener(this);
+        JButton stop = new JButton(stopIcon); stop.addActionListener(this);
+        JButton pause = new JButton(pauseIcon); pause.addActionListener(this);
 
         //Removing Java Applied Designs
-        play.setBorderPainted(false); play.setContentAreaFilled(false);
-        stop.setBorderPainted(false); stop.setContentAreaFilled(false);
-        pause.setBorderPainted(false); pause.setContentAreaFilled(false);
+        play.setBorderPainted(false); play.setContentAreaFilled(false); play.setFocusPainted(false); play.setOpaque(false);
+        stop.setBorderPainted(false); stop.setContentAreaFilled(false); stop.setFocusPainted(false); stop.setOpaque(false);
+        pause.setBorderPainted(false); pause.setContentAreaFilled(false); pause.setFocusPainted(false); pause.setOpaque(false);
 
-        //Organized Box for Buttons
-        Box mediaControl = Box.createHorizontalBox();
-        mediaControl.add(play); mediaControl.add(stop); mediaControl.add(pause);
-        add(mediaControl);
+        //Setup for media grid layout.
+        JPanel mediaPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        mediaPanel.setOpaque(false);
+
+        //Setting the size of the buttons to their icon size given.
+        play.setPreferredSize(new Dimension(48, 48));
+        stop.setPreferredSize(new Dimension(48, 48));
+        pause.setPreferredSize(new Dimension(48, 48));
+
+        //Adding the buttons to the project and grid layout.
+        mediaPanel.add(play); mediaPanel.add(stop); mediaPanel.add(pause);
+        //add(mediaPanel);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        if(e.getSource() == quitItem){
+            System.exit(0);
+        }
     }
 }
